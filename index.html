@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Largo E-Score: Brad Pitt</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --brand-red: #BE1E2D;
+      --page-bg: #F8F9FA;
+      --card-bg: #FFFFFF;
+      --control-border: #D1D1D1;
+      --heading-text: #1F2937;
+      --body-text: #515A68;
+      --muted-text: #7A808D;
+      --muted-text-2: #949494;
+      --axis-text: #B8BDC6;
+      --awareness-purple: #7C5CAA;
+      --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--page-bg);
+      color: var(--body-text);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .content {
+      width: 986px;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0 12px;
+    }
+
+    /* --- Top navigation --- */
+    .nav {
+      background: var(--card-bg);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-inner {
+      width: 1256px;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--heading-text);
+      letter-spacing: -0.5px;
+    }
+    .logo .l-mark { color: var(--brand-red); }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted-text);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      padding-bottom: 4px;
+    }
+    .nav-links a.active {
+      color: var(--heading-text);
+      border-bottom: 2px solid var(--brand-red);
+    }
+    .nav-avatar {
+      margin-left: auto;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--brand-red);
+      color: #fff;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* --- Celebrity header --- */
+    .page { padding: 24px 0 32px; }
+
+    .header-card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .badge {
+      background: var(--brand-red);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.5px;
+      padding: 8px 12px;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .celeb-photo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4a4a4a, #2a2a2a);
+      flex-shrink: 0;
+    }
+    .celeb-name {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--heading-text);
+    }
+    .header-controls {
+      margin-left: auto;
+      display: flex;
+      align-items: flex-end;
+      gap: 16px;
+    }
+    .control-group { display: flex; flex-direction: column; gap: 4px; }
+    .control-group label { font-size: 12px; color: var(--muted-text); }
+    .control-group select {
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--heading-text);
+      padding: 8px 12px;
+      border: 1px solid var(--control-border);
+      border-radius: 4px;
+      background: #fff;
+      min-width: 160px;
+    }
+    .btn-export {
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      color: #fff;
+      background: var(--brand-red);
+      border: none;
+      border-radius: 4px;
+      padding: 9px 20px;
+      cursor: pointer;
+    }
+
+    /* --- Section tabs --- */
+    .tabs {
+      display: flex;
+      gap: 2px;
+      margin: 20px 0;
+      overflow-x: auto;
+    }
+    .tab {
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--body-text);
+      background: #fff;
+      border: 1px solid var(--control-border);
+      padding: 9px 16px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .tab:first-child { border-radius: 4px 0 0 4px; }
+    .tab:last-child { border-radius: 0 4px 4px 0; }
+    .tab + .tab { border-left: none; }
+    .tab.active {
+      color: var(--brand-red);
+      font-weight: 700;
+      border-color: var(--brand-red);
+    }
+
+    /* --- Toolbar --- */
+    .toolbar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .btn-subscription {
+      font-family: inherit;
+      font-size: 13px;
+      color: var(--body-text);
+      background: #fff;
+      border: 1px solid var(--control-border);
+      border-radius: 4px;
+      padding: 8px 14px;
+      cursor: pointer;
+    }
+    .btn-icon {
+      font-family: inherit;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border: 1px solid var(--control-border);
+      border-radius: 4px;
+      cursor: pointer;
+      color: var(--body-text);
+    }
+    .toggle-group { display: flex; }
+    .toggle-group .btn-icon:first-child { border-radius: 4px 0 0 4px; }
+    .toggle-group .btn-icon:last-child { border-radius: 0 4px 4px 0; border-left: none; }
+    .btn-icon.active { background: var(--brand-red); color: #fff; border-color: var(--brand-red); }
+
+    /* --- Top card row --- */
+    .top-row {
+      display: grid;
+      grid-template-columns: 196px 371px repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .escore-card {
+      background: var(--brand-red);
+      color: #fff;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .escore-label { font-size: 13px; font-weight: 500; letter-spacing: 1px; }
+    .escore-value { font-size: 64px; font-weight: 700; line-height: 1.1; margin: 8px 0 20px; }
+    .btn-onesheet {
+      font-family: inherit;
+      font-size: 12px;
+      color: var(--brand-red);
+      background: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 12px;
+      cursor: pointer;
+      width: 100%;
+    }
+    .imdb-link {
+      color: #fff;
+      font-size: 12px;
+      margin-top: 12px;
+      text-decoration: underline;
+    }
+
+    .awareness-card { padding: 20px 24px; }
+    .awareness-title { text-align: center; font-size: 15px; font-weight: 700; color: var(--heading-text); }
+    .awareness-value { text-align: center; font-size: 44px; font-weight: 700; color: var(--awareness-purple); line-height: 1.1; }
+    .awareness-sub { text-align: center; font-size: 12px; color: var(--muted-text); margin: 8px 0 12px; }
+    .awareness-list { list-style: none; font-size: 13px; }
+    .awareness-list li {
+      display: flex;
+      align-items: center;
+      padding: 3px 0;
+    }
+    .awareness-list .dot { width: 10px; height: 10px; border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+    .awareness-list .cat-name { color: var(--body-text); }
+    .awareness-list .cat-pct { margin-left: auto; font-weight: 500; color: var(--heading-text); }
+
+    .news-card {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .news-img {
+      height: 90px;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+    }
+    .news-date {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      background: var(--brand-red);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 500;
+      padding: 3px 6px;
+      border-radius: 2px;
+    }
+    .news-body { padding: 10px 12px; }
+    .news-title { font-size: 13px; font-weight: 500; color: var(--heading-text); line-height: 1.35; }
+
+    /* --- Chart grid --- */
+    .chart-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .chart-card { padding: 16px 20px; }
+    .chart-head {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+    .chart-title { font-size: 15px; font-weight: 700; color: var(--heading-text); }
+    .chart-subtitle { font-size: 12px; color: var(--muted-text); margin-top: 2px; }
+    .chart-actions { margin-left: auto; display: flex; gap: 12px; color: var(--muted-text-2); }
+    .chart-actions span { cursor: pointer; font-size: 16px; }
+    .chart { width: 100%; height: 300px; }
+
+    @media (max-width: 1000px) {
+      .top-row { grid-template-columns: 1fr; }
+      .chart-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <span class="logo"><span class="l-mark">L</span>argo</span>
+      <ul class="nav-links">
+        <li><a href="#">DASHBOARD</a></li>
+        <li><a href="#" class="active">SMART SEARCH</a></li>
+        <li><a href="#">LIST VIEW</a></li>
+      </ul>
+      <div class="nav-avatar">A</div>
+    </div>
+  </nav>
+
+  <main class="content page">
+    <!-- Celebrity header -->
+    <section class="header-card">
+      <div class="badge">E-SCORE<br>CELEBRITY</div>
+      <div class="celeb-photo"></div>
+      <h1 class="celeb-name">Brad Pitt</h1>
+      <div class="header-controls">
+        <div class="control-group">
+          <label for="fielding-date">Fielding date:</label>
+          <select id="fielding-date">
+            <option>July 25, 2025</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label for="filter-by">Filter by:</label>
+          <select id="filter-by">
+            <option>Total males</option>
+          </select>
+        </div>
+        <button class="btn-export">Export</button>
+      </div>
+    </section>
+
+    <!-- Section tabs -->
+    <div class="tabs" role="tablist">
+      <button class="tab active" role="tab" aria-selected="true">Scorecard</button>
+      <button class="tab" role="tab">Awareness</button>
+      <button class="tab" role="tab">Appeal</button>
+      <button class="tab" role="tab">Attributes</button>
+      <button class="tab" role="tab">Trends</button>
+      <button class="tab" role="tab">Endorsement</button>
+      <button class="tab" role="tab">Fandom</button>
+      <button class="tab" role="tab">Social Media</button>
+      <button class="tab" role="tab">Consumer comments</button>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <button class="btn-subscription">Subscription details</button>
+      <button class="btn-icon" title="Table view">&#9638;</button>
+      <div class="toggle-group">
+        <button class="btn-icon active" title="Percent">%</button>
+        <button class="btn-icon" title="Count">#</button>
+      </div>
+    </div>
+
+    <!-- Top card row -->
+    <section class="top-row">
+      <!-- E-Score -->
+      <div class="card escore-card">
+        <div class="escore-label">E-SCORE</div>
+        <div class="escore-value" id="escore-value">—</div>
+        <button class="btn-onesheet">&#8595; Download Celebrity One-Sheet</button>
+        <a class="imdb-link" href="#">Link to Celebrity's IMDb page</a>
+      </div>
+
+      <!-- Awareness -->
+      <div class="card awareness-card">
+        <div class="awareness-title">Awareness</div>
+        <div class="awareness-value" id="awareness-value">—</div>
+        <div class="awareness-sub">Category Averages for this Celebrity:</div>
+        <ul class="awareness-list" id="awareness-list"></ul>
+      </div>
+
+      <!-- News cards -->
+      <a class="card news-card" href="#">
+        <div class="news-img" style="background:linear-gradient(135deg,#9b7cb8,#6b4a8a)">
+          <span class="news-date">February 23, 2026</span>
+        </div>
+        <div class="news-body">
+          <div class="news-title">Global Celebrities &amp; Brands - A Winning Combination</div>
+        </div>
+      </a>
+      <a class="card news-card" href="#">
+        <div class="news-img" style="background:linear-gradient(135deg,#c89a6b,#8a5a3a)">
+          <span class="news-date">February 9, 2026</span>
+        </div>
+        <div class="news-body">
+          <div class="news-title">Talent in the Age of Influencers and AI</div>
+        </div>
+      </a>
+      <a class="card news-card" href="#">
+        <div class="news-img" style="background:linear-gradient(135deg,#5a7a9a,#3a4a6a)">
+          <span class="news-date">January 28, 2026</span>
+        </div>
+        <div class="news-body">
+          <div class="news-title">A New Era: Largo Acquires E-Poll</div>
+        </div>
+      </a>
+    </section>
+
+    <!-- Chart grid -->
+    <section class="chart-grid">
+      <div class="card chart-card">
+        <div class="chart-head">
+          <div>
+            <div class="chart-title">Total Appeal</div>
+          </div>
+          <div class="chart-actions"><span>&hellip;</span><span>&#8599;</span></div>
+        </div>
+        <div class="chart" id="chart-total-appeal"></div>
+      </div>
+
+      <div class="card chart-card">
+        <div class="chart-head">
+          <div>
+            <div class="chart-title">Attributes</div>
+          </div>
+          <div class="chart-actions"><span>&hellip;</span><span>&#8599;</span></div>
+        </div>
+        <div class="chart" id="chart-attributes"></div>
+      </div>
+
+      <div class="card chart-card">
+        <div class="chart-head">
+          <div>
+            <div class="chart-title">Appeal</div>
+            <div class="chart-subtitle">Film Personality - Actor</div>
+          </div>
+          <div class="chart-actions"><span>&hellip;</span><span>&#8599;</span></div>
+        </div>
+        <div class="chart" id="chart-appeal"></div>
+      </div>
+
+      <div class="card chart-card">
+        <div class="chart-head">
+          <div>
+            <div class="chart-title">Power Factors&trade;</div>
+          </div>
+          <div class="chart-actions"><span>&hellip;</span><span>&#8599;</span></div>
+        </div>
+        <div class="chart" id="chart-power-factors"></div>
+      </div>
+    </section>
+  </main>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/echarts@6.1.0/dist/echarts.min.js"
+    integrity="sha384-C2iskrW/uPW46KzOjrvJIQo4YkV8lkD+QS0CrDN18IIPIpT/g2USu8bTP3nvmIAD"
+    crossorigin="anonymous"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
