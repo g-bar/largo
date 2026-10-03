@@ -231,14 +231,7 @@ newsNext.addEventListener("click", () => {
 
 layoutNews();
 
-const widthDebug = document.getElementById("width-debug");
-function updateWidthDebug() {
-  widthDebug.textContent = `width: ${window.innerWidth}px`;
-}
-updateWidthDebug();
-
 window.addEventListener("resize", () => {
-  updateWidthDebug();
   layoutNews(false);
   for (const el of document.querySelectorAll(".chart")) {
     const inst = echarts.getInstanceByDom(el);
