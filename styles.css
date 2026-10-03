@@ -47,13 +47,11 @@ body {
   gap: 40px;
 }
 .logo {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--heading-text);
-  letter-spacing: -0.5px;
+  height: 28px;
+  width: auto;
+  display: block;
   flex-shrink: 0;
 }
-.logo .l-mark { color: var(--brand-red); }
 .nav-links {
   display: flex;
   gap: 32px;
@@ -123,7 +121,8 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #4a4a4a, #2a2a2a);
+  object-fit: cover;
+  object-position: center top;
   flex-shrink: 0;
 }
 .celeb-name {
