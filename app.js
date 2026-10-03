@@ -231,6 +231,14 @@ newsNext.addEventListener("click", () => {
 
 layoutNews();
 
+// --- Nav hamburger ---
+const navToggle = document.getElementById("nav-toggle");
+const navLinks = document.getElementById("nav-links");
+navToggle.addEventListener("click", () => {
+  const open = navLinks.classList.toggle("open");
+  navToggle.setAttribute("aria-expanded", String(open));
+});
+
 window.addEventListener("resize", () => {
   layoutNews(false);
   for (const el of document.querySelectorAll(".chart")) {
