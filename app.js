@@ -183,24 +183,35 @@ for (const item of NEWS) {
   newsTrack.appendChild(a);
 }
 
+// Target card width; the number shown is however many fit in the carousel's
+// current width (floored), so it adapts smoothly as the column resizes.
+const NEWS_CARD_TARGET = 150;
+
+function newsViewportWidth() {
+  return newsTrack.parentElement.clientWidth;
+}
+
 function newsVisibleCount() {
-  return window.innerWidth > 1000 ? 3 : 1;
+  const w = newsViewportWidth();
+  const fit = Math.floor((w + NEWS_GAP) / (NEWS_CARD_TARGET + NEWS_GAP));
+  return Math.min(NEWS.length, Math.max(1, fit));
 }
 
 function newsMaxStart(visible) {
   return Math.max(0, NEWS.length - visible);
 }
 
-function layoutNews() {
+function layoutNews(animate = true) {
   const visible = newsVisibleCount();
   const maxStart = newsMaxStart(visible);
   if (newsStart > maxStart) newsStart = maxStart;
 
-  const viewport = newsTrack.parentElement.clientWidth;
+  const viewport = newsViewportWidth();
   const cardWidth = (viewport - NEWS_GAP * (visible - 1)) / visible;
   for (const card of newsTrack.children) card.style.width = cardWidth + "px";
 
   const step = cardWidth + NEWS_GAP;
+  newsTrack.style.transition = animate ? "" : "none";
   newsTrack.style.transform = `translateX(${-newsStart * step}px)`;
 
   newsPrev.disabled = newsStart === 0;
@@ -228,7 +239,7 @@ updateWidthDebug();
 
 window.addEventListener("resize", () => {
   updateWidthDebug();
-  layoutNews();
+  layoutNews(false);
   for (const el of document.querySelectorAll(".chart")) {
     const inst = echarts.getInstanceByDom(el);
     if (inst) inst.resize();
