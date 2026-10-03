@@ -161,7 +161,74 @@ renderAttributes();
 renderAppeal();
 renderPowerFactors();
 
+// --- News carousel ---
+// NEWS lives in data.js. Shows 3 cards above 1000px, 1 at or below. Arrows
+// shift by a page (3 or 1), but the start index is clamped to total - visible
+// so the last view is always a full set of cards (no trailing empty slots).
+const NEWS_GAP = 12;
+const newsTrack = document.getElementById("news-track");
+const newsPrev = document.getElementById("news-prev");
+const newsNext = document.getElementById("news-next");
+let newsStart = 0;
+
+for (const item of NEWS) {
+  const a = document.createElement("a");
+  a.className = "card news-card";
+  a.href = "#";
+  a.innerHTML =
+    `<div class="news-img" style="background:${item.image}">` +
+      `<span class="news-date">${item.date}</span>` +
+    `</div>` +
+    `<div class="news-body"><div class="news-title">${item.title}</div></div>`;
+  newsTrack.appendChild(a);
+}
+
+function newsVisibleCount() {
+  return window.innerWidth > 1000 ? 3 : 1;
+}
+
+function newsMaxStart(visible) {
+  return Math.max(0, NEWS.length - visible);
+}
+
+function layoutNews() {
+  const visible = newsVisibleCount();
+  const maxStart = newsMaxStart(visible);
+  if (newsStart > maxStart) newsStart = maxStart;
+
+  const viewport = newsTrack.parentElement.clientWidth;
+  const cardWidth = (viewport - NEWS_GAP * (visible - 1)) / visible;
+  for (const card of newsTrack.children) card.style.width = cardWidth + "px";
+
+  const step = cardWidth + NEWS_GAP;
+  newsTrack.style.transform = `translateX(${-newsStart * step}px)`;
+
+  newsPrev.disabled = newsStart === 0;
+  newsNext.disabled = newsStart >= maxStart;
+}
+
+newsPrev.addEventListener("click", () => {
+  const visible = newsVisibleCount();
+  newsStart = Math.max(0, newsStart - visible);
+  layoutNews();
+});
+newsNext.addEventListener("click", () => {
+  const visible = newsVisibleCount();
+  newsStart = Math.min(newsMaxStart(visible), newsStart + visible);
+  layoutNews();
+});
+
+layoutNews();
+
+const widthDebug = document.getElementById("width-debug");
+function updateWidthDebug() {
+  widthDebug.textContent = `width: ${window.innerWidth}px`;
+}
+updateWidthDebug();
+
 window.addEventListener("resize", () => {
+  updateWidthDebug();
+  layoutNews();
   for (const el of document.querySelectorAll(".chart")) {
     const inst = echarts.getInstanceByDom(el);
     if (inst) inst.resize();
