@@ -9,10 +9,20 @@
 //   TopThree = +likeSomewhat          BottomThree = +dislikeSomewhat
 // Each record below keeps those two views in sync. byName/byFace are separate
 // bundled questions (name-only / face-only aware) and stand on their own.
+//
+// base is the respondent count behind a celebrity record's percentages. The #
+// toggle turns the whole page into counts out of the viewed celebrity's base
+// (REF_BASE in app.js = Brad Pitt's total base): count = round(pct * REF_BASE / 100).
+// Brad Pitt's own figures become real headcounts. Category benchmarks are a pooled
+// rate across all actors (every figure is count/aware*100, matching Q Score
+// methodology); their own base is far larger and on a different scale, so the page
+// never uses it. Instead category figures are INDEXED to Brad Pitt's base so the
+// comparison reads in one unit, and the UI flags them as indexed. Hence only the
+// brad-pitt records carry a base; category records don't need one.
 const SCORECARDS = [
   {
     subjectId: "brad-pitt", segmentId: "total", fieldingDate: "2025-07-25",
-    eScore: 99, awareness: 60,
+    base: 1200, eScore: 99, awareness: 60,
     totalAppeal: {
       overall: [52, 86, 5, 14],
       byName:  [49, 83, 7, 17],
@@ -35,7 +45,7 @@ const SCORECARDS = [
   },
   {
     subjectId: "brad-pitt", segmentId: "male", fieldingDate: "2025-07-25",
-    eScore: 97, awareness: 58,
+    base: 590, eScore: 97, awareness: 58,
     totalAppeal: {
       overall: [49, 85, 6, 15],
       byName:  [46, 81, 8, 18],
@@ -58,7 +68,7 @@ const SCORECARDS = [
   },
   {
     subjectId: "brad-pitt", segmentId: "female", fieldingDate: "2025-07-25",
-    eScore: 96, awareness: 56,
+    base: 610, eScore: 96, awareness: 56,
     totalAppeal: {
       overall: [47, 84, 6, 16],
       byName:  [44, 80, 8, 19],

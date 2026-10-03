@@ -268,6 +268,7 @@ body {
 .awareness-card { padding: 20px 24px; }
 .awareness-title { text-align: center; font-size: 15px; font-weight: 700; color: var(--heading-text); }
 .awareness-value { text-align: center; font-size: 44px; font-weight: 700; color: var(--awareness-purple); line-height: 1.1; }
+.awareness-base { font-size: 13px; font-weight: 400; color: var(--muted-text); }
 .awareness-sub { text-align: center; font-size: 12px; color: var(--muted-text); margin: 8px 0 12px; }
 .awareness-list { list-style: none; font-size: 13px; }
 .awareness-list li {
@@ -278,6 +279,10 @@ body {
 .awareness-list .dot { width: 10px; height: 10px; border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
 .awareness-list .cat-name { color: var(--body-text); }
 .awareness-list .cat-pct { margin-left: auto; font-weight: 500; color: var(--heading-text); }
+/* Indexed (counterfactual) counts read as reference, not observed tallies. */
+.awareness-list li.indexed .cat-name,
+.awareness-list li.indexed .cat-pct { color: var(--muted-text); font-weight: 400; }
+.awareness-indexed-note { font-size: 11px; color: var(--muted-text); font-style: italic; margin-top: 8px; }
 
 .news-carousel {
   display: flex;

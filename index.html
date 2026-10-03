@@ -65,10 +65,16 @@
     <!-- Toolbar -->
     <div class="toolbar">
       <button class="btn-subscription">Subscription details</button>
-      <button class="btn-icon" title="Table view">&#9638;</button>
+      <button class="btn-icon" title="Table view" aria-label="Table view">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <rect x="1.5" y="1.5" width="13" height="13" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+          <line x1="8" y1="1.5" x2="8" y2="14.5" stroke="currentColor" stroke-width="1.3"/>
+          <line x1="1.5" y1="8" x2="14.5" y2="8" stroke="currentColor" stroke-width="1.3"/>
+        </svg>
+      </button>
       <div class="toggle-group">
-        <button class="btn-icon active" title="Percent">%</button>
-        <button class="btn-icon" title="Count">#</button>
+        <button class="btn-icon active" id="mode-pct" title="Percent" aria-pressed="true">%</button>
+        <button class="btn-icon" id="mode-count" title="Count" aria-pressed="false">#</button>
       </div>
     </div>
 
@@ -86,8 +92,9 @@
       <div class="card awareness-card">
         <div class="awareness-title">Awareness</div>
         <div class="awareness-value" id="awareness-value">—</div>
-        <div class="awareness-sub">Category Averages for this Celebrity:</div>
+        <div class="awareness-sub" id="awareness-sub">Category Averages for this Celebrity:</div>
         <ul class="awareness-list" id="awareness-list"></ul>
+        <div class="awareness-indexed-note" id="awareness-indexed-note" hidden></div>
       </div>
 
       <!-- News carousel (rendered from NEWS in data.js by app.js) -->
