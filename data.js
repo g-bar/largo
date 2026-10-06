@@ -12,8 +12,8 @@
 // toggle turns the whole page into counts out of the viewed celebrity's base
 // (REF_BASE in app.js = Brad Pitt's total base): count = round(pct * REF_BASE / 100).
 // Brad Pitt's own figures become real headcounts. Category benchmarks are a pooled
-// rate across all actors (every figure is count/aware*100, matching Q Score
-// methodology); their own base is far larger and on a different scale, so the page
+// rate across all actors (every figure is count/aware*100); 
+// their own base is far larger and on a different scale, so the page
 // never uses it. Instead category figures are INDEXED to Brad Pitt's base so the
 // comparison reads in one unit, and the UI flags them as indexed. Hence only the
 // brad-pitt records carry a base; category records don't need one.

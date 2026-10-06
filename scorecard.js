@@ -130,11 +130,10 @@ function renderAttributes(view) {
 }
 
 // --- Appeal pie: Film Personality - Actor category, 6-point scale ---
-// This is a category benchmark (pooled rate across all actors; Case C, matching
-// Q Score methodology where every figure is count/aware*100). On Brad Pitt's page
-// its raw counts (out of the category's huge base) are meaningless, so in # mode
-// the slices are indexed to his base: count = round(pct * base / 100). The
-// title note flags that these are indexed.
+// This is a category benchmark (pooled rate across all actors.
+//  On Brad Pitt's page its raw counts (out of the category's huge base) are meaningless,
+//  so in # mode the slices are indexed to his base: count = round(pct * base / 100). 
+// The title note flags that these are indexed.
 function renderAppeal(view) {
   const a = getScorecard("film-personality-actor", "total", DATE).appeal;
   const slices = [
