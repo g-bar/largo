@@ -1,9 +1,7 @@
-// Sample scorecard data from docs/dashboard-plan.md (section 6), with every record
-// filled out to a complete Scorecard. Values printed in the mockup are kept as-is;
-// the rest are plausible fills consistent with them. First draft: static, read-only.
-// Loaded as a global before app.js (no build step).
+// Sample scorecard data, with every record
+// filled out to a complete Scorecard.
 //
-// appeal and totalAppeal.overall are the same question (doc section 6):
+// appeal and totalAppeal.overall are the same question
 //   overall = [TopTwoBox, TopThreeBox, BottomTwoBox, BottomThreeBox]
 //   TopTwo = likeALot + like          BottomTwo = dislike + dislikeALot
 //   TopThree = +likeSomewhat          BottomThree = +dislikeSomewhat

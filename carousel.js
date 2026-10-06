@@ -1,6 +1,5 @@
 // News carousel.
-// NEWS lives in data.js. Shows 3 cards above 1000px, 1 at or below. Arrows
-// shift by a page (3 or 1), but the start index is clamped to total - visible
+// Arrows shift by a page but the start index is clamped to total - visible
 // so the last view is always a full set of cards (no trailing empty slots).
 const NEWS_GAP = 12;
 const newsTrack = document.getElementById("news-track");
